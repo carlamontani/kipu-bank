@@ -1,6 +1,6 @@
 # 👋 Hola, soy Carla Montani  
 
-Soy **desarrolladora Full Stack* con experiencia en **React, Vue y Node.js**.  
+Soy **desarrolladora Full Stack** con experiencia en **React, Vue y Node.js**.  
 Me apasiona el **diseño UX/UI** y doy cursos de research y UX/UI✨.  
 
 ---
