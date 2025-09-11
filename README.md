@@ -6,9 +6,9 @@ Me apasiona el **diseño UX/UI** y doy cursos de research y UX/UI✨.
 ---
 
 ## 💻 Intereses 
-- 🌐 Desarrollo Web (React, Angular, Vue, TypeScript).  
-- 🎨 UX/UI: interfaces centradas en el usuario.  
-- 🔒 Blockchain & Web3: aplicaciones descentralizadas, contratos inteligentes y exploración de Ethereum.    
+- 🌐 Desarrollo Web: Hacer más proyectos con React, Angular, Vue, TypeScript.  
+- 🎨 UX/UI: Seguir enseñando dar diferentes cursos.
+- 🔒 Blockchain & Web3: Aprender más de aplicaciones descentralizadas, contratos inteligentes y exploración de Ethereum.    
 
 ---
 
