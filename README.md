@@ -59,3 +59,111 @@ After deployment, you can interact with the contract's public functions using a 
 * `GetBalance(address account)`: Check the ETH balance of any `account` within the bank.
 * `GetDepositCount(address account)`: Get the total number of deposits made by a specific `account`.
 * `GetWithdrawalCount(address account)`: Get the total number of withdrawals made by a specific `account`.
+
+### Integration Guide: Frontend & Backend
+
+For interacting with the **KipuBank** smart contract from a web application or backend service, you will need the contract's **address** and its **Application Binary Interface (ABI)**.
+
+---
+
+## 🔍 Get the Contract ABI
+
+1. Go to the **KipuBank Etherscan** page 🌐  
+2. Navigate to the **Contract** tab  
+3. Scroll down to the **Contract ABI** section  
+4. Click the **Copy** button to copy the entire ABI (a large JSON array) to your clipboard 📋  
+
+---
+
+## 💻 Frontend Interaction (Web3 DApp)
+
+For browser-based applications, use a Web3 library like **Ethers.js** or **Web3.js** to connect to a user’s wallet (e.g., **MetaMask** 🦊).
+
+### Example using Ethers.js
+
+```javascript
+// Import ethers.js
+import { ethers } from "ethers";
+
+// Your contract's address on Sepolia
+const contractAddress = "0x2d9ded90c8b42de78ae7955674f94b147212f9da";
+
+// Your contract's ABI (Paste the JSON array here)
+const contractAbi = [...]; 
+
+// Get the user's wallet provider and signer
+const provider = new ethers.BrowserProvider(window.ethereum);
+const signer = await provider.getSigner();
+
+// Create a contract instance
+const kipuBankContract = new ethers.Contract(contractAddress, contractAbi, signer);
+
+// Example: Deposit function
+async function depositEth(amountInEth) {
+  try {
+    const amountInWei = ethers.parseEther(amountInEth.toString());
+    const tx = await kipuBankContract.Deposit({ value: amountInWei });
+    await tx.wait(); // Wait for the transaction to be mined
+    console.log("Deposit successful! ✅ Transaction hash:", tx.hash);
+  } catch (error) {
+    console.error("Deposit failed! 😥", error);
+  }
+}
+
+// Example: Get user balance (a read-only function)
+async function getMyBalance() {
+  try {
+    const myAddress = await signer.getAddress();
+    const balanceInWei = await kipuBankContract.GetBalance(myAddress);
+    const balanceInEth = ethers.formatEther(balanceInWei);
+    console.log(`Your balance is: ${balanceInEth} ETH 💰`);
+  } catch (error) {
+    console.error("Could not fetch balance! 😥", error);
+  }
+}
+```
+
+> ⚠️ Use this code with caution.
+
+---
+
+## 🛠️ Backend Interaction (Server-side)
+
+For a backend application, you will need a **blockchain provider** (like Infura or Alchemy) and a **private key** to sign transactions.  
+> 🔒 Never expose your private key in client-side code.
+
+### Example using Ethers.js (Node.js)
+
+```javascript
+// Import ethers.js and dotenv for secure access to environment variables
+require('dotenv').config();
+const { ethers } = require("ethers");
+
+// Your contract's address on Sepolia
+const contractAddress = "0x2d9ded90c8b42de78ae7955674f94b147212f9da";
+
+// Your contract's ABI (Paste the JSON array here)
+const contractAbi = [...]; 
+
+// Set up provider and signer
+const sepoliaProvider = new ethers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, sepoliaProvider);
+
+// Create a contract instance with the wallet
+const kipuBankContract = new ethers.Contract(contractAddress, contractAbi, wallet);
+
+// Example: Withdraw function from a backend service
+async function withdrawFromBackend(amountInEth) {
+  try {
+    const amountInWei = ethers.parseEther(amountInEth.toString());
+    const tx = await kipuBankContract.Withdrawal(amountInWei);
+    await tx.wait();
+    console.log("Withdrawal transaction sent! ✅ Hash:", tx.hash);
+  } catch (error) {
+    console.error("Withdrawal failed! 😥", error);
+  }
+}
+```
+
+>  
+> **Note:** In the backend example, `SEPOLIA_RPC_URL` and `PRIVATE_KEY` should be stored securely as **environment variables** and **not hardcoded** into your source file. 🛡️
