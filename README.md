@@ -1,4 +1,4 @@
-# KipuBank
+# KipuBank 🏦
 
 ## Description
 
@@ -6,11 +6,16 @@
 
 Key features include:
 
-* **Deposit Functionality**: Users can deposit ETH into a personal vault within the contract.
-* **Withdrawal Limits**: A maximum withdrawal amount is enforced per transaction to mitigate risk.
-* **Global Capacity Cap**: The total amount of ETH held by the contract is capped to prevent over-liquidation.
-* **Balance Tracking**: Each user's balance and transaction history are securely tracked.
-* **Secure ETH Handling**: It includes safe calls for ETH transfers to prevent common re-entrancy attacks.
+* **Deposit Functionality**: Users can deposit ETH into a personal vault within the contract. 💰
+* **Withdrawal Limits**: A maximum withdrawal amount is enforced per transaction to mitigate risk. 💸
+* **Global Capacity Cap**: The total amount of ETH held by the contract is capped to prevent over-liquidation. 📊
+* **Balance Tracking**: Each user's balance and transaction history are securely tracked. 📝
+* **Secure ETH Handling**: It includes safe calls for ETH transfers to prevent common re-entrancy attacks. 🔒
+
+## Contract on Sepolia Testnet
+
+This contract has been deployed on the Sepolia testnet. You can view it and interact with it on Etherscan at the following address:
+[KipuBank on Sepolia](https://sepolia.etherscan.io/address/0x2d9ded90c8b42de78ae7955674f94b147212f9da) 🔗
 
 ## Deployment Instructions
 
